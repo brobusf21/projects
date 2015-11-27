@@ -1,0 +1,43 @@
+2
+E 5
+E 2
+F 4
+B 4
+E 7
+E 3
+C 3
+B 2
+F 7
+C 5
+A 6
+B 1
+C 6
+C 8
+H 5
+E 6
+H 6
+G 6
+C 7
+G 1
+C 7 F 2
+B 1 C 2
+F 7 D 2
+G 1 B 8
+C 3 A 2
+E 6 G 5
+D 2 C 4
+E 2 G 2
+H 6 A 3
+B 4 E 4
+A 6 C 7
+G 2 B 5
+E 5 F 7
+C 2 G 8
+F 4 E 2
+E 4 B 3
+A 3 A 6
+G 6 D 2
+C 4 E 4
+
+
+Win for player 1:  A6 C6 E4 E7 F7 F2 E2 H5

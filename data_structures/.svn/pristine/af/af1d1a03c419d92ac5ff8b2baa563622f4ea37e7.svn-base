@@ -1,0 +1,304 @@
+import java.awt.List;
+import java.util.ArrayList;
+
+class BinarySearchTree<T extends Comparable <T>> {
+    
+    private class BSTNode {
+        public T data;
+        public BSTNode left;
+        public BSTNode right;
+        
+        BSTNode(T newdata)
+        {
+            data = newdata;
+        }
+    }
+    
+    private BSTNode root;
+    
+    public void Insert(T elem)
+    {
+        root = Insert(root, elem);
+    }
+    
+    public boolean Find(T elem)
+    {
+        return Find(root,elem);
+    }
+    
+    public void Delete(T elem)
+    {
+        root = Delete(root, elem);
+    }
+    
+    public T ElementAt(int i)
+    {
+        /* Fill me in!! */
+        
+        return null;
+    }
+    
+    
+    public int numNodes(BSTNode tree) {
+        if (tree == null)
+            return 0;
+        return 1 + numNodes(tree.left) + numNodes(tree.right);
+    }
+    
+    
+    public int NumLarger(T elem)
+    {
+        /* Fill me in!! */
+        int total = 0;
+        BSTNode temp = root;
+        if (temp == null)
+            return total;
+        while (temp != null) {
+            //System.out.println(root.data);
+            if (elem.compareTo(temp.data) == 0) {
+                total+= numNodes(temp.right);
+                break;
+            } else if (elem.compareTo(temp.data) < 0) { // element is less than the temp.data
+                total+=1;
+                total+= numNodes(temp.right);
+                temp = temp.left;
+            } else if (elem.compareTo(temp.data) > 0){ // element is greater than the temp.data
+                if (temp.left == null) {
+                    temp = temp.right;
+                } else {
+                    break;
+                }
+            }
+        }
+        return total;
+    }
+    
+    
+    public void Balance()
+    {
+        /* Fill me in! */
+        BSTNode temp = root;
+        BSTNode newTree = null;
+        ArrayList<T> treeArray = new ArrayList<T>();
+        
+        /* Populating array with elements in order */
+        System.out.println(Size(temp));
+        int end = Size(temp);
+        for (int i = 0; i < end; i++) {
+            //System.out.println("This is i: " + i);
+            //System.out.println("Adding: " + Minimum(temp));
+            treeArray.add(Minimum(temp));
+            //System.out.println("Size of treeArray: " + treeArray.size());
+            //System.out.println("Deleting from temp: " + Minimum(temp));
+            Delete(temp, Minimum(temp));
+        }
+        /* Recreating the tree with the arraylist elements */
+        int middleList = treeArray.size() % (treeArray.size()/2);
+        //	   System.out.println("Size of temp still: " + Size(temp));
+        //Print(temp);
+        //System.out.println("size of temp: " + Size(temp));
+        //createNewTree(newTree,treeArray.get(middleList));
+        //Insert(treeArray.get(middleList));
+        // System.out.println(Size(newTree));
+        //InsertNT(treeArray, newTree);
+        
+    }
+    public void InsertNT(ArrayList<T> treeArray, BSTNode newTree) {
+        ArrayList<T> left = new ArrayList<T>(treeArray.size() / 2);
+        ArrayList<T> right = new ArrayList<T>(treeArray.size() - left.size());
+        //int middleOfFirstList = left.size() % (left.size()/2);
+        //int middleOfSecondList = right.size() % (right.size()/2);
+        
+        //System.out.println("Left.size: " + left.size());
+        
+        //	   InsertNewTree(newTree, InsertNT(a);
+        //	   InsertNewTree(newTree, InsertNT(b);
+    }
+    
+    private BSTNode createNewTree(BSTNode tree, T elem)
+    {
+        if (tree == null)
+        {
+            //System.out.println(elem);
+            //System.out.println("Hi");
+            return new BSTNode(elem);
+        }
+        if (elem.compareTo(tree.data) < 0)
+        {
+            tree.left = Insert(tree.left, elem);
+            return tree;
+        }
+        else
+        {
+            tree.right = Insert(tree.right, elem);
+            return tree;
+        }
+    }
+    
+    public void Print() {
+        Print(root);
+    }
+    
+    public int Height()
+    {
+        return Height(root);
+    }
+    
+    
+    private int Height(BSTNode tree)
+    {
+        if (tree == null)
+        {
+            return 0;
+        }
+        return 1 + Math.max(Height(tree.left), Height(tree.right));
+    }
+    
+    private boolean Find(BSTNode tree, T elem)
+    {
+        if (tree == null)
+        {
+            return false;
+        }
+        if (elem.compareTo(tree.data) == 0)
+        {
+            return true;
+        }
+        if (elem.compareTo(tree.data) < 0)
+        {
+            return Find(tree.left, elem);
+        }
+        else
+        {
+            return Find(tree.right, elem);
+        }
+    }
+    
+    private T Minimum(BSTNode tree)
+    {
+        if (tree == null)
+        {
+            return null;
+        }
+        if (tree.left == null)
+        {
+            return tree.data;
+        }
+        else
+        {
+            return Minimum(tree.left);
+        }
+    }
+    
+    private void Print(BSTNode tree)
+    {
+        if (tree != null)
+        {
+            Print(tree.left);
+            System.out.println(tree.data);
+            Print(tree.right);
+        }
+    }
+    
+    private BSTNode Insert(BSTNode tree, T elem)
+    {
+        if (tree == null)
+        {
+            //System.out.println(elem);
+            //System.out.println("Hi");
+            return new BSTNode(elem);
+        }
+        if (elem.compareTo(tree.data) < 0)
+        {
+            tree.left = Insert(tree.left, elem);
+            return tree;
+        }
+        else
+        {
+            tree.right = Insert(tree.right, elem);
+            return tree;
+        }
+    }
+    
+    
+    private BSTNode Delete(BSTNode tree, T elem)
+    {
+        if (tree == null)
+        {
+            return null;
+        }
+        if (tree.data.compareTo(elem) == 0)
+        {
+            if (tree.left == null)
+            {
+                return tree.right;
+            }
+            else if (tree.right == null)
+            {
+                return tree.left;
+            }
+            else
+            {
+                if (tree.right.left == null)
+                {
+                    tree.data = tree.right.data;
+                    tree.right = tree.right.right;
+                    return tree;
+                }
+                else
+                {
+                    tree.data = RemoveSmallest(tree.right);
+                    return tree;
+                }
+            }
+        }
+        else  if (elem.compareTo(tree.data) < 0)
+        {
+            tree.left = Delete(tree.left, elem);
+            return tree;
+        }
+        else
+        {
+            tree.right = Delete(tree.right, elem);
+            return tree;
+        }
+    }  
+    
+    int Size(BSTNode tree)
+    {
+        if (tree == null)
+        {
+            return 0;
+        }
+        return 1 + Size(tree.left) + Size(tree.right);
+    }
+    
+    T RemoveSmallest(BSTNode tree) 
+    {
+        if (tree.left.left == null) 
+        {
+            T smallest = tree.left.data;
+            tree.left = tree.left.right;
+            return smallest;
+        } 
+        else 
+        {
+            return RemoveSmallest(tree.left);
+        }
+    }
+    public static void main(String args[])
+    
+    {
+        BinarySearchTree<Integer> t= new BinarySearchTree<Integer>();
+        for (int x = 0; x < 31; x++)
+            t.Insert(new Integer(x));
+        System.out.println(t.ElementAt(new Integer(5)));
+        System.out.println(t.NumLarger(new Integer(8)));
+        System.out.println(t.Height());
+        t.Balance();
+        System.out.println(t.ElementAt(new Integer(5)));
+        System.out.println(t.NumLarger(new Integer(8)));
+        System.out.println(t.Height());
+    }
+    
+}

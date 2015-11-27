@@ -1,0 +1,11 @@
+90/100
+Correctly prints out board, inputs legal moves, records moves on board. 20 points.
+20/20
+Program detects all illegal player moves (playing outside board range, playing in opponent's goal zone, forming clumps, moving a piece to cause networks to be created for both players), malformed input, etc, and prints out appropriate message to player. 30 points
+25/30 : -5 Sometimes there is an infinite loop
+Detects and prints out wins correctly 30 points
+30/30
+Computer player makes only legal moves 10 points
+10/10
+Compter player wins more than 75% of games played against a completley random computer player 10 points
+5/10

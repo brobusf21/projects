@@ -1,0 +1,49 @@
+
+92/100
+Optimized QuickSort Run Time 200000:76
+Insertion Sort Run Time:0
+Selection Sort Run Time:0
+Shell Sort Run Time:0
+Bucket Sort Run Time:0
+Heap Sort Run Time:0
+Quick Sort Run Time:0
+Failed
+Radix Sort Run Time:1
+Insertion SortLL Run Time:0
+Merge SortLL Run Time:0
+selection SortLL Run Time:0
+Optimized QuickSort Run Time:0
+Comparable 0 : Insertion Sort
+Comparable 1 : Selection Sort
+Comparable 2 : Shell Sort : -1 Indexing
+Comparable 3 : Heap Sort : -1 : Indexing
+Comparable 4 : Quick Sort
+Comparable 5 : Optimized Quick Sort
+660 99 128 385 564 576 585 614 913 946 
+660 99 128 385 564 576 585 614 913 946 
+99 128 385 564 576 585 614 660 913 946 
+99 128 385 564 576 585 614 660 913 946 
+660 99 128 385 564 576 585 614 913 946 
+660 99 128 385 564 576 585 614 913 946 
+Index 0 Mismatch
+Value 0 : 660 Value 1 : 99
+Comparable sort :2 Wrong result
+Index 0 Mismatch
+Value 0 : 99 Value 1 : 660
+Comparable sort :4 Wrong result
+LLNode 0 : Insertion Sort LL
+LLNode 1 : Merge Sort LL : -4
+LLNode 2 : Selection Sort LL
+92->259->277->278->549->581->734->806->886->961->
+734->581->549->961->277->806->886->92->278->259->
+92->259->277->278->549->581->734->806->886->961->
+Mismatch :734 != 92
+Mismatch :92 != 734
+Int 0 : Bucket Sort
+Int 1 : Radix Sort : -2
+210 137 202 357 459 795 882 981 911 793 
+210 202 882 459 795 981 357 911 357 793 
+Index 1 Mismatch
+Value 0 : 137 Value 1 : 202
+int sort :1 Wrong result
+Optimized QuickSort Run Time 200000:76

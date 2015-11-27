@@ -1,0 +1,103 @@
+class Graphtest {
+
+	public static final int GRAPH_SIZE = 15;
+	public static final double EDGE_PERCENT = 0.3;
+
+	public static void DFS(Graph G, int Parent[], int startVertex, boolean Visited[]) 
+	{
+		// Fill me in! 
+		// Recursion is your friend here! 
+		Edge tmp;
+		Visited[startVertex] = true;
+		for (tmp = G.edges[startVertex]; tmp != null; tmp = tmp.next) {
+			if (!Visited[tmp.neighbor]) {
+				Visited[tmp.neighbor] = true;
+				Parent[tmp.neighbor] = startVertex;
+				DFS(G, Parent, tmp.neighbor, Visited);
+			}
+		}
+	}
+
+	public static void PrintPath(int Parent[], int endvertex) 
+	{
+		// Fill me in! 
+		// Recursion is your friend here!
+		// You may want to use a helper function, just to get the final
+		// end-of-line to print out correctly.
+		// As always, see me if you have any questions!
+		int newVertex = -1;
+		for (int j = 0; j < Parent.length; j++) {
+			if (Parent[j] == endvertex) {
+				newVertex = j;
+				break;
+			}
+		}
+		for (int b = 0; b < newVertex; b++) {
+			System.out.print(Parent[b] + " ");
+		}
+	}
+
+	public static void BFS(Graph G, int Parent[], int startVertex, boolean Visited[]) 
+	{
+		// Fill me in! 
+		// Recursion, not so much your friend
+		// Feel free to use the provided Queue code (but be sure to submit
+		// all code necessary for this file to compile and run!)
+		Edge tmp;
+		int nextV;
+		ArrayQueue Q = new ArrayQueue();
+
+		Visited[startVertex] = true;
+		Q.enqueue(new Integer(startVertex));
+		while (!Q.empty()) {
+			nextV = ((Integer) Q.dequeue()).intValue();
+			for (tmp = G.edges[nextV]; tmp != null; tmp = tmp.next) {
+				if (!Visited[tmp.neighbor]) {
+					Visited[tmp.neighbor] = true;
+					Q.enqueue(new Integer(tmp.neighbor));
+					Parent[tmp.neighbor] = nextV;
+				}
+			}
+		}
+	}
+
+	public static void main(String args[]) 
+	{
+		boolean Visited[] = new boolean[GRAPH_SIZE];
+		int Parent[] = new int[GRAPH_SIZE];
+		Graph G = new Graph(GRAPH_SIZE);
+		int i;
+		for (i=0; i<G.numVertex;i++) 
+		{
+			Visited[i] = false;
+			Parent[i] = -1;
+		}
+		G.randomize(EDGE_PERCENT);
+		G.print();
+		BFS(G,Parent,0,Visited);
+		System.out.println("----------------");
+		System.out.println("BFS:");
+		System.out.println("----------------");
+		for (i=0; i<G.numVertex;i++) 
+		{
+			System.out.println("Path from 0 to " + i + ":");
+			PrintPath(Parent,i);
+			System.out.print("\n");
+		}
+		for (i=0; i<G.numVertex;i++) 
+		{
+			Visited[i] = false;
+			Parent[i] = -1;
+		}
+		DFS(G,Parent,0,Visited);
+		System.out.println("----------------");
+		System.out.println("DFS:");
+		System.out.println("----------------");
+		for (i=0; i<G.numVertex;i++) 
+		{
+			System.out.println("Path from 0 to " + i + ":");
+			PrintPath(Parent,i);
+			System.out.print("\n");
+		}
+	}
+}

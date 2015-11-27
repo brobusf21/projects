@@ -1,0 +1,19 @@
+2
+A 4
+D 3
+B 5
+D 1
+A 6
+B 7
+B 1
+G 2
+A 3
+B 4
+D 2
+E 8
+H 6
+
+
+This is the game from the assignment handout.
+Output should have:  Two bad moves, end with a win for Player 1:
+A4 B5 B7 G2 D2 H6

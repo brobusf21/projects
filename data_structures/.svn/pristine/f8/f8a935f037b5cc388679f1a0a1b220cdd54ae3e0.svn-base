@@ -1,0 +1,148 @@
+class LinkedList
+{
+    protected ListNode head;
+    protected ListNode tail;
+    
+    public LinkedList()
+    {
+        head = new ListNode(null);
+        tail = head;
+    }
+    
+    // Method add(Object o)
+    // Adds the object at the end of the linked list
+    public void add(Object o)
+    {
+        ListNode newElem = new ListNode(o);
+        tail.setNext(newElem);
+        tail = tail.next();
+    }
+    // Method get(int index)
+    //  Returns the object at the specified index in the list
+    //  The first element in the list is at index 0, the second is at index 1, etc.
+    //  No error checking is done for the range of index -- elements outside the range
+    //  will throw a null pointer exception
+    public Object get(int index)
+    {
+           ListNode tmp = head.next();
+           for (int i = 0; i < index; i++)
+           {
+              tmp = tmp.next();
+           }
+           return tmp.data();
+    }
+    
+    // Method find(Object o)
+    //  Returns true if the Object o is in the list, and false otherwise.
+    //  Uses .equals to check for equality (as opposed to ==)
+    public boolean find(Object o)
+    {
+        ListNode tmp = head.next();
+        while (tmp != null)
+        {
+            if (tmp.data().equals(o))
+            {
+                return true;
+            }
+            tmp = tmp.next();
+        }
+        return false;
+    }
+
+    // Method reverse
+    // Reverses the string
+    public void reverse()
+    {
+	// Fill me in!
+    	ListNode currentNode = head.next();
+    	ListNode prevNode = null;
+    	ListNode nextNode; 
+    	ListNode dummy = new ListNode(null);
+    	
+    	while (currentNode != null) {
+    		nextNode = currentNode.next();
+    		currentNode.setNext(prevNode);
+    		prevNode = currentNode;
+    		currentNode = nextNode;
+    		if (currentNode == null) {
+    			dummy.setNext(prevNode);
+    		}
+    	}  
+    	head = dummy;
+    }
+    
+    // Method toString()
+    // Creates a String representation of the list:
+    //  Left parenthesis, followed by by concatenating the result of toString() 
+    //  called on each element of the list (separated by commas), fooled by a 
+    //  right parenthesis.
+    //  Empty list:  toString => "()"
+    //  List containing the single Integer 3: toString => "(3)"
+    //  List containing three integers 1, 2, 3:  toString => "(1,2,3)"
+    public String toString()
+    {
+        // Fill me in!
+    	String listElements = "\"(";
+        ListNode current = head.next();
+        if (head.next() == null) { /* Empty list */
+        	return "\"()\"";
+        }
+    	while (current != null) {
+    		if (current.next() == null) {
+    			listElements+= current.data() + ")" + "\"";
+    			break;
+    		}
+    		listElements += current.data() + ", ";
+    		current = current.next();
+    	}
+    	return listElements;
+    }
+    
+    // Method remove(Object o)
+    //  Removes the first occurrence of the Object o from the list.  If
+    //    the object appears more than once, only the first occurrence is
+    //    removed.  If the object does not occur in the list, the method
+    //    does nothing. 
+    public void remove(Object o)
+    {
+        // Fill me in!
+    	ListNode current = head;
+    	while (current.next() != null) {
+    		if (current.next().data().equals(o)) {
+    			current.setNext(current.next().next());
+    			break;
+    		}
+    		current = current.next();
+    	}
+
+    }
+    
+    public static void main(String args[])
+    {
+        LinkedList l = new LinkedList();
+        for (int i = 0; i < 10; i++)
+        {
+            l.add(new Integer(i));
+        }
+        System.out.println(l);
+        l.reverse();
+        System.out.println(l);
+        l.remove(new Integer(5));
+        System.out.println(l);
+        l.remove(new Integer(0));
+        System.out.println(l);
+        l.add(new Integer(11));
+        System.out.println(l);
+        l.remove(new Integer(5));
+        System.out.println(l);
+
+        LinkedList l2 = new LinkedList();
+        System.out.println(l2);
+        l2.add(new Integer(2));
+        System.out.println(l2);
+        l2.remove(new Integer(2));
+        System.out.println(l2);
+
+    }
+
+}

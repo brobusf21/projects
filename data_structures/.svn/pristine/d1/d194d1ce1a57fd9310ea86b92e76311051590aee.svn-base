@@ -1,0 +1,22 @@
+2
+A 2 
+B 1
+C 4
+C 3
+B 3
+C 5
+D 5
+B 6
+C 2
+F 1
+E 4
+D 4
+D 3
+E 7
+C 6
+H 7
+
+Win for Player 1:  A2 C4 C5 E7 E4 H7
+
+(plays of B 3, B 6 for player 1 are illegal, causes a clump)
+(play of D 4 for player 2 is illegal, causes a clump)
